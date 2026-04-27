@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --open --mode development --port 8080",
     "start-prod": "node app.js",
     "test": "jest",
-    "eslint": "eslint './**/*.{js,jsx}'",
+    "eslint": "eslint .",
     "build": "webpack --mode production"
   },
   "repository": {
@@ -32,7 +32,9 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "setupFiles": ["<rootDir>/jest.setup.js"]
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
