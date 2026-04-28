@@ -12,6 +12,7 @@ module.exports = [
       "node_modules/**",
       "dist/**",
       "playwright.config.js",
+      "playwright-report/**",
     ],
   },
   js.configs.recommended,
