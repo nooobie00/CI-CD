@@ -73,8 +73,6 @@ const PokemonPage = ({ previous, next }) => {
                 abilityName={formatName(hiddenAbility.ability.name)}
               />
             )}
-            <>HELLO WORLD!</>
-            <>this is CI/CD</>
           </div>
         </div>
       </div>
