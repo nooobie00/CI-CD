@@ -49,12 +49,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: deployment successful
-        if: ${{ success() }}
+        if: |
+          success()  && 
+          (github.event_name == 'push')
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           content: ":white_check_mark: **Deployment Successful!** A new version deployed to production"
           title: |
-            "[Deployment Details](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}})"
+            [Deployment Details](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}})
             **Commit:** ${{ github.event.after}}
             **Message:** ${{ github.event.commits[0].message}}
             **Author:** ${{ github.event.head_commit.author.name}}
