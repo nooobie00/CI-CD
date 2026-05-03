@@ -74,6 +74,7 @@ const PokemonPage = ({ previous, next }) => {
               />
             )}
           </div>
+          <>Hello</>
         </div>
       </div>
     </>
