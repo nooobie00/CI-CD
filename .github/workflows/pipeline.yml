@@ -67,6 +67,8 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           content: ":x: **Build Failed!** The pipeline encountered an error"
           title: "**Failure Details**"
+          status: failure
+          color: #FF0000
           description: |
             **Repository:** ${{ github.repository}}
             **Branch:** ${{ github.ref_name }}
@@ -79,4 +81,3 @@ jobs:
 
             [View Commit](${{github.event.repository.html_url}}/commit/${{github.event.head_commit.id}})
             [View Workflow Run](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}})
-          color: #FF0000
