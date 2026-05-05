@@ -49,6 +49,10 @@ jobs:
     runs-on: ubuntu-latest
     if: always()
     steps:
+      - name: GITHIN LOG
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: deployment successful
         if: (github.event_name == 'push')
         uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708
@@ -63,6 +67,7 @@ jobs:
       - name: deployment failed
         if: needs.simple_deployment_pipeline.result == 'failure'
         uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708
+
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           content: ":x: **Build Failed!** The pipeline encountered an error"
@@ -73,7 +78,7 @@ jobs:
             **Repository:** ${{ github.repository}}
             **Branch:** ${{ github.ref_name }}
             **Commit:** ${{ github.sha }}
-            **Message:** ${{ github.event.head_commit.message }}
+            **Message:** ${{ github.event.commits[0].message }}
             **Author:** ${{ github.actor }}
             **Workflow:** ${{ github.workflow}}
             **Job:** ${{ github.job}}
