@@ -55,9 +55,10 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: deployment successful
         if: (github.event_name == 'push')
-        uses: sarisia/actions-status-discord@eb045afee445dc055c18d3d90bd0f244fd062708
+        uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          nodetail: true
           content: ":white_check_mark: **Deployment Successful!** A new version deployed to production"
           description: |
             [Deployment Details](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}})
@@ -83,5 +84,5 @@ jobs:
             **Job:** ${{ github.job}}
 
 
-            [View Commit](${{github.event.repository.html_url}}/commit/${{github.event.head_commit.id}})
+            [View Commit](${{github.event.repository.html_url}}/commit/${{github.event.after}})
             [View Workflow Run](${{github.event.repository.html_url}}/actions/runs/${{github.run_id}})
