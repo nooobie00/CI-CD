@@ -47,14 +47,13 @@ jobs:
   notify_success:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
-    if: always()
+    if: github.event_name == 'push'
     steps:
       - name: GITHIN LOG
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: deployment successful
-        if: (github.event_name == 'push')
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
@@ -68,10 +67,9 @@ jobs:
   notify_failure:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
-    if: always()
+    if: always() && needs.simple_deployment_pipeline.result == 'failure'
     steps:
       - name: deployment failed
-        if: needs.simple_deployment_pipeline.result == 'failure'
         uses: sarisia/actions-status-discord@v1
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
