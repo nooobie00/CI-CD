@@ -1,6 +1,10 @@
 name: Periodic Hello
 
 on:
+  workflow_run:
+    workflows: [Deployment Pipeline]
+    types:
+      - completed
   workflow_dispatch:
   schedule:
     - cron: "*/15 * * * *"
