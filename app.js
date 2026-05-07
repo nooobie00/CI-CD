@@ -12,6 +12,9 @@ app.get('/version', (req, res) => {
 app.get('/health', (req, res) => {
   res.send('ok')
 })
+app.get('/error', (req, res) => {
+  throw new Error('Intentional error')
+})
 
 const start = async () => {
   await app.listen(PORT)

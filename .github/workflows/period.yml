@@ -1,0 +1,17 @@
+name: Periodic Hello
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  health_check:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "hello!"
+      - name: Check for crash in patch
+        uses: jtalk/url-health-check-action@e7d5ebdc9027fbf494d2d034f3e8fc78f8b7a2b9
+        with:
+          url: https://ci-cd-3kyn.onrender.com/error|http://ci-cd-3kyn.onrender.com/error
+          max-attempts: 3
