@@ -13,9 +13,10 @@ app.get('/health', (req, res) => {
   res.send('ok')
 })
 app.get('/error', (req, res) => {
-  // eslint-disable-next-line no-constant-condition
-  if (true) throw 'error...  '
   res.send('ok')
+  setTimeout(() => {
+    throw 'error...'
+  }, 50000)
 })
 
 const start = async () => {
