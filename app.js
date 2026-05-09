@@ -13,25 +13,24 @@ app.get('/health', (req, res) => {
 })
 let isBroken = false
 
-setInterval(
-  () => {
-    isBroken = true
-
-    setTimeout(
-      () => {
-        isBroken = false
-      },
-      5 * 60 * 1000,
-    ) // broken for 5 min
-  },
-  13 * 60 * 1000,
-) // breaks every 13 min
-
 app.get('/error', (req, res) => {
   if (isBroken) {
     return res.status(500).json({ error: 'app is broken' })
   }
+
   res.send('ok')
+  setTimeout(
+    () => {
+      isBroken = true
+      setTimeout(
+        () => {
+          isBroken = false
+        },
+        15 * 60 * 1000,
+      )
+    },
+    5 * 60 * 1000,
+  )
 })
 
 const start = async () => {
