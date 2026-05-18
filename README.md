@@ -1,6 +1,4 @@
-# Full Stack open CI/CD
-
-This repository is used for the CI/CD module of the Full Stack Open course
+# Pokedex CI/CD
 
 ## Commands
 
@@ -15,3 +13,7 @@ Start by running `npm install` inside the project folder
 ## Current Running Application
 
 https://ci-cd-3kyn.onrender.com
+
+## Repository link to Blog CI/CD
+
+https://github.com/nooobie00/CI-CD-BLOG
